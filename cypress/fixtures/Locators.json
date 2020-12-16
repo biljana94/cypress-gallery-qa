@@ -1,0 +1,11 @@
+{
+    "Header": {
+        "Login": "a[href='/login']",
+        "Register": "a[href='/register']"
+    },
+    "Login": {
+        "Email": "#email",
+        "Password": "#password",
+        "ButtonSubmit": "button[type='submit']"
+    }
+}
