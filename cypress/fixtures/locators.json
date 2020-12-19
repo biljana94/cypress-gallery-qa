@@ -1,0 +1,21 @@
+{
+    "header": {
+        "login": "a[href='/login']",
+        "register": "a[href='/register']",
+        "logout": "a[role='button ']"
+    },
+    "login": {
+        "email": "#email",
+        "password": "#password",
+        "buttonSubmit": "button[type='submit']"
+    },
+    "register": {
+        "firstName": "#first-name",
+        "lastName": "#last-name",
+        "email": "#email",
+        "password": "#password",
+        "confirmPassword": "#password-confirmation",
+        "acceptTerms": "input[type='checkbox']",
+        "submit": "button[type='submit']"
+    }
+}

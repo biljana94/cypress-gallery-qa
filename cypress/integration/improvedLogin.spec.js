@@ -1,7 +1,7 @@
 /// <reference types="Cypress"/>
 
 const faker = require('faker') //uvlacimo faker u test fajl
-const Locators = require('../fixtures/Locators.json'); //uvlacimo lokatore u test fajl
+const locators = require('../fixtures/locators.json'); //uvlacimo lokatore u test fajl
 
 //objekat koji nam predstavlja korisnika
 let userData = {
@@ -23,25 +23,25 @@ describe("Improved tests", () => {
 
     it("Login with valid credentials", () => {
         // cy.visit('/')
-        cy.get(Locators.Header.Login).click()
-        cy.get(Locators.Login.Email).type('test123123@test.com')
-        cy.get(Locators.Login.Password).type('test123123')
-        cy.get(Locators.Login.ButtonSubmit).click()
+        cy.get(locators.header.login).click()
+        cy.get(locators.login.email).type('test123123@test.com')
+        cy.get(locators.login.password).type('test123123')
+        cy.get(locators.login.buttonSubmit).click()
     })
 
     it("Logout", () => {
-        cy.get(Locators.Header.Login).click()
-        cy.get(Locators.Login.Email).type(correctEmail)
-        cy.get(Locators.Login.Password).type(correctPassword)
-        cy.get(Locators.Login.ButtonSubmit).click()
+        cy.get(locators.header.login).click()
+        cy.get(locators.login.email).type(correctEmail)
+        cy.get(locators.login.password).type(correctPassword)
+        cy.get(locators.login.buttonSubmit).click()
         // cy.contains('My Galleries').should('be.visible')
-        cy.get(Locators.Header.Logout).click()
+        cy.get(locators.header.logout).click()
     })
 
-    it.only('Login with faker invalid credentials', () => {
-        cy.get(Locators.Header.Login).click()
-        cy.get(Locators.Login.Email).type(userData.randomEmail)
-        cy.get(Locators.Login.Password).type(userData.randomPassword)
-        cy.get(Locators.Login.ButtonSubmit).click()
+    it('Login with faker invalid credentials', () => {
+        cy.get(locators.header.login).click()
+        cy.get(locators.login.email).type(userData.randomEmail)
+        cy.get(locators.login.password).type(userData.randomPassword)
+        cy.get(locators.login.buttonSubmit).click()
     })
 })

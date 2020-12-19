@@ -1,6 +1,6 @@
 /// <reference types="Cypress"/>
 
-const Locators = require('../fixtures/Locators.json')
+const locators = require('../fixtures/locators.json')
 const faker = require('faker');
 
 let userData = {
@@ -17,14 +17,14 @@ describe('Register test', () => {
     })
 
     it('Register', () => {
-        cy.get(Locators.Header.Register).click()
-        cy.get(Locators.Register.FirstName).type(userData.randomFirstName)
-        cy.get(Locators.Register.LastName).type(userData.randomLastName)
-        cy.get(Locators.Register.Email).type(userData.randomEmail)
-        cy.get(Locators.Register.Password).type(userData.randomPassword + '1')
-        cy.get(Locators.Register.ConfirmPassword).type(userData.randomPassword + '1')
-        cy.get(Locators.Register.AcceptTerms).check()
-        cy.get(Locators.Register.Submit).click()
+        cy.get(locators.header.register).click()
+        cy.get(locators.register.firstName).type(userData.randomFirstName)
+        cy.get(locators.register.lastName).type(userData.randomLastName)
+        cy.get(locators.register.email).type(userData.randomEmail)
+        cy.get(locators.register.password).type(userData.randomPassword + '1')
+        cy.get(locators.register.confirmPassword).type(userData.randomPassword + '1')
+        cy.get(locators.register.acceptTerms).check()
+        cy.get(locators.register.submit).click()
         cy.get('.title-style').should('be.visible').and('have.text', 'All Galleries') //getovala sam title sa home page aplikacije i proverila da li cypress to vidi posle registracije
     })
 })
