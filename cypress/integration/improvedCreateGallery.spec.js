@@ -33,6 +33,6 @@ describe('Create Gallery', () => {
         cy.get(locators.createGallery.imageUrl).type(userData.randomImage)
         cy.get(locators.createGallery.buttonSubmit).eq(0).click();
         cy.get(locators.allGalleries.pageTitle).should('contain.text', 'All Galleries');
-        // cy.should('be.visible', locators.allGalleries.galleryTitle).last().and('contain.text', userData.randomTitle);
+        cy.get(locators.allGalleries.galleryTitle).first().should('contain.text', userData.randomTitle);
     });
 });
