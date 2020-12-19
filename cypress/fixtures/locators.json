@@ -1,8 +1,8 @@
 {
     "header": {
-        "login": "a[href='/login']",
-        "register": "a[href='/register']",
-        "logout": "a[role='button ']"
+        "loginButton": "a[href='/login']",
+        "registerButton": "a[href='/register']",
+        "logoutButton": "a[role='button ']"
     },
     "login": {
         "email": "#email",
@@ -17,5 +17,17 @@
         "confirmPassword": "#password-confirmation",
         "acceptTerms": "input[type='checkbox']",
         "submit": "button[type='submit']"
+    },
+    "createGallery": {
+        "createGalleryButton": "a[href='/create']",
+        "formTitle": ".title-style",
+        "titleId": "#title",
+        "descriptionId": "#description",
+        "imageUrl": "input[type='url']",
+        "buttonSubmit": "button[type='submit']"
+    },
+    "allGalleries": {
+        "pageTitle": ".title-style",
+        "galleryTitle": ".box-title"
     }
 }

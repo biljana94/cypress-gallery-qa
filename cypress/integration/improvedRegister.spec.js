@@ -17,7 +17,7 @@ describe('Register test', () => {
     })
 
     it('Register', () => {
-        cy.get(locators.header.register).click()
+        cy.get(locators.header.registerButton).click()
         cy.get(locators.register.firstName).type(userData.randomFirstName)
         cy.get(locators.register.lastName).type(userData.randomLastName)
         cy.get(locators.register.email).type(userData.randomEmail)
@@ -25,6 +25,6 @@ describe('Register test', () => {
         cy.get(locators.register.confirmPassword).type(userData.randomPassword + '1')
         cy.get(locators.register.acceptTerms).check()
         cy.get(locators.register.submit).click()
-        cy.get('.title-style').should('be.visible').and('have.text', 'All Galleries') //getovala sam title sa home page aplikacije i proverila da li cypress to vidi posle registracije
+        cy.get(locators.allGalleries.pageTitle).should('be.visible').and('have.text', 'All Galleries') //getovala sam title sa home page aplikacije i proverila da li cypress to vidi posle registracije
     })
 })

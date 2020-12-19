@@ -23,23 +23,23 @@ describe("Improved tests", () => {
 
     it("Login with valid credentials", () => {
         // cy.visit('/')
-        cy.get(locators.header.login).click()
+        cy.get(locators.header.loginButton).click()
         cy.get(locators.login.email).type('test123123@test.com')
         cy.get(locators.login.password).type('test123123')
         cy.get(locators.login.buttonSubmit).click()
     })
 
     it("Logout", () => {
-        cy.get(locators.header.login).click()
+        cy.get(locators.header.loginButton).click()
         cy.get(locators.login.email).type(correctEmail)
         cy.get(locators.login.password).type(correctPassword)
         cy.get(locators.login.buttonSubmit).click()
         // cy.contains('My Galleries').should('be.visible')
-        cy.get(locators.header.logout).click()
+        cy.get(locators.header.logoutButton).click()
     })
 
     it('Login with faker invalid credentials', () => {
-        cy.get(locators.header.login).click()
+        cy.get(locators.header.loginButton).click()
         cy.get(locators.login.email).type(userData.randomEmail)
         cy.get(locators.login.password).type(userData.randomPassword)
         cy.get(locators.login.buttonSubmit).click()
