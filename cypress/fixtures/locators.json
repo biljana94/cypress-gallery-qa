@@ -29,5 +29,11 @@
     "allGalleries": {
         "pageTitle": ".title-style",
         "galleryTitle": ".box-title"
+    },
+    "singleGallery": {
+        "title": "h1[class='title-style']",
+        "description": "p",
+        "author": ":nth-child(1) > :nth-child(2) > a",
+        "deleteButton": ":nth-child(5) > button.btn"
     }
 }
