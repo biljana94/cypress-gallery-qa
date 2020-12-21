@@ -19,11 +19,11 @@ describe("Improved tests", () => {
         cy.url().should("contains", "https://gallery-app")
 
         // POZIVAMO KOMANDU - komanda broj 1
-        cy.loginCommand('test123123@test.com', 'test123123')
+        // cy.loginCommand('test123123@test.com', 'test123123')
 
         //POZIVAMO KOMANDU - komanda broj 2
         //ne prima nikakve parametre tako da joj ovde ne prosledjujemo nista
-        cy.loginCommandEnv()
+        // cy.loginCommandEnv()
         
         //LOGIN KROZ BACKEND
         // cy.request('POST', 'https://gallery-api.vivifyideas.com/api/auth/login', {
@@ -34,7 +34,23 @@ describe("Improved tests", () => {
         // })
     })
 
-    it.only('Login through backend', () => {
+    // INTERCEPT() funckija - nova funkcija u cypressu
+    it.only('intercept request', () => {
+        cy.intercept('POST', 'https://gallery-api.vivifyideas.com/api/auth/login', (req) => {
+            
+        }).as('successfulLogin')
+        cy.visit('/login')
+        cy.get(locators.login.email).type('test123123@test.com')
+        cy.get(locators.login.password).type('test123123')
+        cy.get(locators.login.buttonSubmit).click()
+        cy.wait('@successfulLogin').then((interception) => {
+            // console.log(interception)
+            expect(interception.response.body.user_id).to.equal(100)
+        })
+    })
+
+    //LOGIN KROZ BACKEND
+    it('Login through backend', () => {
         cy.visit('/login')
     })
 
