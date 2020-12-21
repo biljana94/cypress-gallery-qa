@@ -1,5 +1,6 @@
 /// <reference types="Cypress"/>
 
+// const { identity } = require('cypress/types/lodash');
 const faker = require('faker') //uvlacimo faker u test fajl
 const locators = require('../fixtures/locators.json'); //uvlacimo lokatore u test fajl
 
@@ -16,6 +17,21 @@ describe("Improved tests", () => {
     beforeEach("Visit gallery app", () => {
         cy.visit("/")
         cy.url().should("contains", "https://gallery-app")
+
+        // POZIVAMO KOMANDU
+        cy.loginCommand('test123123@test.com', 'test123123')
+        
+        //LOGIN KROZ BACKEND
+        // cy.request('POST', 'https://gallery-api.vivifyideas.com/api/auth/login', {
+        //     email: 'test123123@test.com',
+        //     password: 'test123123'
+        // }).its('body').then((responseBody) => {
+        //     window.localStorage.setItem('token', responseBody.access_token)
+        // })
+    })
+
+    it.only('Login through backend', () => {
+        cy.visit('/login')
     })
 
     let correctEmail = 'test123123@test.com';

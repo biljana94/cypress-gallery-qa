@@ -2,7 +2,7 @@
 
 const locators = require('../fixtures/locators.json');
 const faker = require('faker');
-const { get } = require('cypress/types/lodash');
+// const { get } = require('cypress/types/lodash');
 
 let userData = {
     randomTitle: faker.name.title(),
