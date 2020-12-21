@@ -18,8 +18,12 @@ describe("Improved tests", () => {
         cy.visit("/")
         cy.url().should("contains", "https://gallery-app")
 
-        // POZIVAMO KOMANDU
+        // POZIVAMO KOMANDU - komanda broj 1
         cy.loginCommand('test123123@test.com', 'test123123')
+
+        //POZIVAMO KOMANDU - komanda broj 2
+        //ne prima nikakve parametre tako da joj ovde ne prosledjujemo nista
+        cy.loginCommandEnv()
         
         //LOGIN KROZ BACKEND
         // cy.request('POST', 'https://gallery-api.vivifyideas.com/api/auth/login', {

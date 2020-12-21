@@ -25,6 +25,7 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
 // KOMANDA ZA LOGIN
+// KOMANDA BROJ 1
 Cypress.Commands.add('loginCommand', (username, pass) => {
     cy.request({
         method: 'POST',
@@ -35,5 +36,22 @@ Cypress.Commands.add('loginCommand', (username, pass) => {
         }
     }).its('body').then((responseBody) => {
         window.localStorage.setItem('token', responseBody.access_token)
+    })
+})
+
+// DEFINISANJE VARIJABLE U ENVIRONMENTU (u cypress.json)
+//KOMANDA BROJ 2
+//definisali smo 2 environment varijable u CYPRESS.JSON koje ovde koristimo
+//te 2 varijable koje smo definisali su prazne u cypress.json jer cemo ih setovati kroz terminal
+Cypress.Commands.add('loginCommandEnv', () => {
+    cy.request({
+        method: 'POST',
+        url: 'https://gallery-api.vivifyideas.com/api/auth/login',
+        body: {
+            email: Cypress.env('external_username'),
+            password: Cypress.env('external_password')
+        }
+    }).its('body').then((responseBody) => {
+        window.localStorage.setItem('token', responseBody.access_token) //setujemo token
     })
 })
