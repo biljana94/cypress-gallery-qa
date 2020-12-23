@@ -11,6 +11,8 @@ describe('Example 2', () => {
 
     //each() funkcija - kao forEach u javascriptu, prolazimo kroz niz i uzimamo svaki element niza
     it('forEach primer', () => {
+        // '.cell' nam vraca niz galerija sa pocetne strane i prolazimo pomocu each() kroz taj niz i uzimamo svaki element niza
+        //each($element, $index, $list) -> $element - el niza, $index - index tog elementa, $list - ceo niz kroz koji prolazimo
         cy.get('.cell').each(($galleryCard, $index, $list) => {
             // console.log($galleryCard)
             //trim() fnc nam brise prazan prostor ako ga ima
