@@ -5,9 +5,9 @@ const faker = require('faker') //uvlacimo faker u test fajl
 const locators = require('../fixtures/locators.json'); //uvlacimo lokatore u test fajl
 
 describe('Example 2', () => {
-    before('Visit gallery app', () => {
-        cy.visit('/')
-    })
+    // before('Visit gallery app', () => {
+    //     cy.visit('/')
+    // })
 
     //each() funkcija - kao forEach u javascriptu, prolazimo kroz niz i uzimamo svaki element niza
     it('forEach primer', () => {
@@ -21,5 +21,18 @@ describe('Example 2', () => {
                 // console.log($galleryCard)
             }
         })
+    })
+
+    //STABOVANJE
+    //stabujemo dovlacenje 10 galerija (inicijalni dolazak na homepage)
+    //u fixture su fixni podaci
+    //intercept()
+    //trigerovace se kad dodjemo na homepage, a definisali smo ga pre posete jer cemo poslati request pre posete
+    //koliko galerija imamo definisanih u {fixture: 'stubGalleries.json'} toliko galerija se i prikazuje na pocetnoj strani
+    //mozemo da testiramo user interface bez backenda; mozemo da testiramo sve sa stubom
+    it.only('Primer sa stabovanim responsom', () => {
+        cy.intercept('GET', 'https://gallery-api.vivifyideas.com/api/galleries?page=1&term=', {fixture: 'stubGalleries.json'})
+        cy.visit('/')
+        cy.wait(500)
     })
 })
