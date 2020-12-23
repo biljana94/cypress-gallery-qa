@@ -5,6 +5,8 @@ const faker = require('faker') //uvlacimo faker u test fajl
 const locators = require('../fixtures/locators.json'); //uvlacimo lokatore u test fajl
 
 var token = '' //prazna varijabla token u koju stavljamo token kad ga izvucemo iz localStorage-a
+var galleryId = ''
+var userId= ''
 
 let userData = {
     email: 'test123123@test.com',
@@ -32,8 +34,9 @@ describe('Example - day 4', () => {
         }).its('body').then((response) => {
             window.localStorage.setItem('token', response.access_token)
             token = response.access_token //token koji smo izvukli iz localStorage-a stavljamo u var token posto on ima scope do svih it() blokova
+            userId = response.user_id
         })
-        cy.visit('/login')
+        // cy.visit('/login')
     })
 
     it('Create new gallery through backend', () => {
@@ -50,6 +53,26 @@ describe('Example - day 4', () => {
             headers: {
                 authorization: `Bearer ${token}`
             }
+        }).its('body').then((response) => {
+            expect(response.description).to.equal(userData.randomDescription) //asertacija da je description iz responsa isti kao onaj randomDescription iz fakera sto smo mi poslali
+            expect(response.title).to.equal(userData.randomTitle)
+            galleryId = response.id //izvlacimo galleryId iz responsa i stavljamo u varijablu galleryId
+        })
+    })
+
+    it('Get created gallery', () => {
+        //za GET metodu nam ne treba headers deo
+        cy.request({
+            method: 'GET',
+            url: `https://gallery-api.vivifyideas.com/api/galleries/${galleryId}`
+        }).its('body').then((response) => {
+            expect(response.id).to.equal(galleryId) //proveravamo da li nam je vratio dobre podatke od galerije
+            expect(response.title).to.equal(userData.randomTitle)
+            expect(response.description).to.equal(userData.randomDescription)
+            expect(response.user_id).to.equal(userId)
+            expect(response.user.email).to.equal(userData.email)
+            // cy.log(response.images[0].image_url)
+            expect(response.images[0].image_url).to.equal(userData.randomImage[0]) //asertacija slike
         })
     })
 })
